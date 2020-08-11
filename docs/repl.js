@@ -1,5 +1,5 @@
 var term = new Terminal({
-    cols: 70,
+    cols: 80,
     rows: 25,
     screenKeys: true,
     useStyle: true,
