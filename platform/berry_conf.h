@@ -146,7 +146,7 @@
  * otherwise disable the feature.
  * Default: 1
  **/
-#define BE_USE_SHARED_LIB               1
+#define BE_USE_SHARED_LIB               0
 
 /* Macro: BE_USE_OVERLOAD_HASH
  * Allows instances to overload hash methods for use in the
