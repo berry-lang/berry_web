@@ -29,7 +29,7 @@ BERRY_API void be_writebuffer(const char *buffer, size_t length)
     _js_writebuffer(buffer, length);
 }
 
-EM_JS(char*, _js_readbuffer, (), {
+EM_JS(char*, _js_readbuffer, (void), {
     // Note how we return the output of handleAsync() here.
     return Asyncify.handleAsync(async() => {
         const text = await waitLineText();
