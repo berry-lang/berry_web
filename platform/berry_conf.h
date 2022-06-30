@@ -60,6 +60,21 @@
  **/
 #define BE_DEBUG_VAR_INFO               1
 
+/* Macro: BE_USE_PERF_COUNTERS
+ * Use the obshook function to report low-level actions.
+ * Default: 1
+ **/
+#define BE_USE_PERF_COUNTERS            1
+
+/* Macro: BE_VM_OBSERVABILITY_SAMPLING
+ * If BE_USE_PERF_COUNTERS == 1
+ * then the observability hook is called regularly in the VM loop
+ * allowing to stop infinite loops or too-long running code.
+ * The value is a power of 2.
+ * Default: 20 - which translates to 2^20 or ~1 million instructions
+ **/
+#define BE_VM_OBSERVABILITY_SAMPLING    20
+
 /* Macro: BE_STACK_TOTAL_MAX
  * Set the maximum total stack size.
  * Default: 20000
@@ -73,6 +88,22 @@
  * Default: 10
  **/
 #define BE_STACK_FREE_MIN               10
+
+/* Macro: BE_STACK_START
+ * Set the starting size of the stack at VM creation.
+ * Default: 50
+ **/
+#define BE_STACK_START                  50
+
+/* Macro: BE_CONST_SEARCH_SIZE
+ * Constants in function are limited to 255. However the compiler
+ * will look for a maximum of pre-existing constants to avoid
+ * performance degradation. This may cause the number of constants
+ * to be higher than required.
+ * Increase is you need to solidify functions.
+ * Default: 50
+ **/
+#define BE_CONST_SEARCH_SIZE            50
 
 /* Macro: BE_STACK_FREE_MIN
  * The short string will hold the hash value when the value is
@@ -131,6 +162,22 @@
  **/
 #define BE_USE_DEBUG_HOOK               1
 
+/* Macro: BE_USE_DEBUG_GC
+ * Enable GC debug mode. This causes an actual gc after each
+ * allocation. It's much slower and should not be used
+ * in production code.
+ * Default: 0
+ **/
+#define BE_USE_DEBUG_GC                  0
+
+/* Macro: BE_USE_DEBUG_STACK
+ * Enable Stack Resize debug mode. At each function call
+ * the stack is reallocated at a different memory location
+ * and the previous location is cleared with toxic data.
+ * Default: 0
+ **/
+#define BE_USE_DEBUG_STACK               0
+
 /* Macro: BE_USE_XXX_MODULE
  * These macros control whether the related module is compiled.
  * When they are true, they will enable related modules. At this
@@ -142,9 +189,13 @@
 #define BE_USE_MATH_MODULE              1
 #define BE_USE_TIME_MODULE              1
 #define BE_USE_OS_MODULE                1
+#define BE_USE_GLOBAL_MODULE            1
 #define BE_USE_SYS_MODULE               1
 #define BE_USE_DEBUG_MODULE             1
 #define BE_USE_GC_MODULE                1
+#define BE_USE_SOLIDIFY_MODULE          1
+#define BE_USE_INTROSPECT_MODULE        1
+#define BE_USE_STRICT_MODULE            1
 
 /* Macro: BE_EXPLICIT_XXX
  * If these macros are defined, the corresponding function will
