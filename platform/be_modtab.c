@@ -15,9 +15,13 @@ be_extern_native_module(json);
 be_extern_native_module(math);
 be_extern_native_module(time);
 be_extern_native_module(os);
+be_extern_native_module(global);
 be_extern_native_module(sys);
 be_extern_native_module(debug);
 be_extern_native_module(gc);
+be_extern_native_module(solidify);
+be_extern_native_module(introspect);
+be_extern_native_module(strict);
 
 /* user-defined modules declare start */
 
@@ -41,6 +45,9 @@ BERRY_LOCAL const bntvmodule* const be_module_table[] = {
 #if BE_USE_OS_MODULE
     &be_native_module(os),
 #endif
+#if BE_USE_GLOBAL_MODULE
+    &be_native_module(global),
+#endif
 #if BE_USE_SYS_MODULE
     &be_native_module(sys),
 #endif
@@ -49,6 +56,15 @@ BERRY_LOCAL const bntvmodule* const be_module_table[] = {
 #endif
 #if BE_USE_GC_MODULE
     &be_native_module(gc),
+#endif
+#if BE_USE_SOLIDIFY_MODULE
+    &be_native_module(solidify),
+#endif
+#if BE_USE_INTROSPECT_MODULE
+    &be_native_module(introspect),
+#endif
+#if BE_USE_STRICT_MODULE
+    &be_native_module(strict),
 #endif
     /* user-defined modules register start */
 
