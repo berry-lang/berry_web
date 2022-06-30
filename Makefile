@@ -6,10 +6,10 @@ MKDIR     = mkdir
 LFLAGS    = -s WASM=0 -s ASYNCIFY \
             -s 'ASYNCIFY_IMPORTS=["_js_readbuffer", "_js_writebuffer"]'
 
-INCPATH   = berry/src plantform
-SRCPATH   = berry/src plantform
+INCPATH   = berry/src platform
+SRCPATH   = berry/src platform
 GENERATE  = generate
-CONFIG    = plantform/berry_conf.h
+CONFIG    = platform/berry_conf.h
 COC		  = berry/tools/coc/coc
 CONST_TAB = $(GENERATE)/be_const_strtab.h
 MAKE_COC  = $(MAKE) -C berry/tools/coc
@@ -47,7 +47,7 @@ $(OBJS): $(CONST_TAB)
 
 $(CONST_TAB): $(COC) $(GENERATE) $(SRCS) $(CONFIG)
 	$(MSG) [Prebuild] generate resources
-	$(Q) $(COC) -i $(SRCPATH) -c $(CONFIG) -o $(GENERATE)
+	$(Q) $(COC) $(SRCPATH) -c $(CONFIG) -o $(GENERATE)
 
 $(GENERATE):
 	$(Q) $(MKDIR) $(GENERATE)
