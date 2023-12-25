@@ -36,12 +36,28 @@
  **/
 #define BE_USE_SINGLE_FLOAT             0
 
+/* Macro: BE_BYTES_MAX_SIZE
+ * Maximum size in bytes of a `bytes()` object.
+ * Putting too much pressure on the memory allocator can do
+ * harm, so we limit the maximum size.
+ * Default: 32kb
+ **/
+#define BE_BYTES_MAX_SIZE               (32*1024)   /* 32 kb default value */
+
 /* Macro: BE_USE_PRECOMPILED_OBJECT
  * Use precompiled objects to avoid creating these objects at
  * runtime. Enable this macro can greatly optimize RAM usage.
  * Default: 1
  **/
 #define BE_USE_PRECOMPILED_OBJECT       1
+
+/* Macro: BE_DEBUG_SOURCE_FILE
+ * Indicate if each function remembers its source file name
+ * 0: do not keep the file name (saves 4 bytes per function)
+ * 1: keep the source file name
+ * Default: 1
+ **/
+#define BE_DEBUG_SOURCE_FILE            1
 
 /* Macro: BE_DEBUG_RUNTIME_INFO
  * Set runtime error debugging information.
@@ -177,6 +193,14 @@
  * Default: 0
  **/
 #define BE_USE_DEBUG_STACK               0
+
+/* Macro: BE_USE_MEM_ALIGNED
+ * Some embedded processors have special memory areas
+ * with read/write constraints of being aligned to 32 bits boundaries.
+ * This options tries to move such memory areas to this region.
+ * Default: 0
+ **/
+#define BE_USE_MEM_ALIGNED               0
 
 /* Macro: BE_USE_XXX_MODULE
  * These macros control whether the related module is compiled.
