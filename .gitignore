@@ -61,6 +61,10 @@ test_report/
 # Ctags
 tags
 
+# compiled Berry
+berry
+berry.exe
+
 # other
 *.out.*
 *.user
